@@ -1,0 +1,68 @@
+<%--
+  App layout (top half). Before including, a page sets:
+    pageTitle  - heading text
+    eyebrow    - small text above the heading (optional)
+    nav        - key of the active sidebar link
+    topActions - HTML for buttons on the right of the heading (optional, via c:set body)
+--%>
+<c:set var="me" value="${sessionScope.user}" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%@ include file="/WEB-INF/views/common/head.jspf" %>
+<title><c:out value="${pageTitle}" /> · Hostel Room Allocation</title>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar" aria-label="Main navigation">
+    <a class="brand" href="${ctx}/${me.admin ? 'admin' : 'student'}/dashboard">
+      <span class="brand-mark"><i class="ti ti-building-community"></i></span>
+      <span class="brand-text"><strong>HostelHub</strong><span>Room Allocation System</span></span>
+    </a>
+
+    <nav class="nav">
+      <c:choose>
+        <c:when test="${me.admin}">
+          <div class="nav-label">Overview</div>
+          <a href="${ctx}/admin/dashboard"    class="${nav == 'dashboard' ? 'active' : ''}"><i class="ti ti-layout-dashboard"></i>Dashboard</a>
+          <a href="${ctx}/admin/reports"      class="${nav == 'reports' ? 'active' : ''}"><i class="ti ti-chart-bar"></i>Reports</a>
+          <div class="nav-label">Allocation</div>
+          <a href="${ctx}/admin/applications" class="${nav == 'applications' ? 'active' : ''}"><i class="ti ti-file-description"></i>Applications</a>
+          <a href="${ctx}/admin/residents"    class="${nav == 'residents' ? 'active' : ''}"><i class="ti ti-users"></i>Residents</a>
+          <a href="${ctx}/admin/requests"     class="${nav == 'requests' ? 'active' : ''}"><i class="ti ti-arrows-exchange"></i>Requests</a>
+          <div class="nav-label">Hostel</div>
+          <a href="${ctx}/admin/rooms"        class="${nav == 'rooms' ? 'active' : ''}"><i class="ti ti-door"></i>Blocks &amp; Rooms</a>
+        </c:when>
+        <c:otherwise>
+          <div class="nav-label">Student</div>
+          <a href="${ctx}/student/dashboard"  class="${nav == 'dashboard' ? 'active' : ''}"><i class="ti ti-home"></i>My Hostel</a>
+          <a href="${ctx}/student/apply"      class="${nav == 'apply' ? 'active' : ''}"><i class="ti ti-file-plus"></i>Room Application</a>
+          <a href="${ctx}/student/fees"       class="${nav == 'fees' ? 'active' : ''}"><i class="ti ti-receipt"></i>Fees</a>
+          <a href="${ctx}/student/requests"   class="${nav == 'requests' ? 'active' : ''}"><i class="ti ti-arrows-exchange"></i>Vacate / Change</a>
+        </c:otherwise>
+      </c:choose>
+    </nav>
+
+    <div class="side-user">
+      <span class="avatar"><c:out value="${me.initials}" /></span>
+      <div class="who">
+        <strong><c:out value="${me.fullName}" /></strong>
+        <span>${me.admin ? 'Warden / Admin' : me.rollNo}</span>
+      </div>
+      <a href="${ctx}/logout" title="Sign out" aria-label="Sign out"><i class="ti ti-logout"></i></a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <button type="button" class="btn btn-ghost btn-sm menu-btn mb-2" data-menu aria-label="Open menu"><i class="ti ti-menu-2"></i></button>
+        <c:if test="${not empty eyebrow}"><div class="eyebrow"><c:out value="${eyebrow}" /></div></c:if>
+        <h1><c:out value="${pageTitle}" /></h1>
+      </div>
+      <c:if test="${not empty topActions}"><div class="topbar-actions">${topActions}</div></c:if>
+    </header>
+
+    <main class="content">
+<%@ include file="/WEB-INF/views/common/flash.jspf" %>

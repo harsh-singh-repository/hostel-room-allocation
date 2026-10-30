@@ -1,0 +1,26 @@
+  <section class="auth-art">
+    <a class="brand" href="${ctx}/login">
+      <span class="brand-mark"><i class="ti ti-building-community"></i></span>
+      <span class="brand-text"><strong>HostelHub</strong><span>Room Allocation System</span></span>
+    </a>
+
+    <div>
+      <h1>Find your room. <em>Skip the queue.</em></h1>
+      <p class="lead">Apply online, get a bed allotted automatically by the hostel's allocation engine, pay fees and request room changes from one place.</p>
+
+      <div class="building" aria-hidden="true">
+        <div class="win-grid">
+          <span class="win lit"></span><span class="win"></span><span class="win lit"></span><span class="win lit"></span><span class="win"></span>
+          <span class="win"></span><span class="win lit"></span><span class="win"></span><span class="win lit"></span><span class="win lit"></span>
+          <span class="win lit"></span><span class="win lit"></span><span class="win"></span><span class="win"></span><span class="win lit"></span>
+        </div>
+        <div class="door"></div>
+      </div>
+    </div>
+
+    <div class="auth-points">
+      <span><i class="ti ti-bolt"></i>Instant allocation</span>
+      <span><i class="ti ti-list-numbers"></i>Fair waitlist</span>
+      <span><i class="ti ti-shield-check"></i>Secure records</span>
+    </div>
+  </section>

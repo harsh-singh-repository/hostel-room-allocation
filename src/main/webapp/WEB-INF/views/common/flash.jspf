@@ -1,0 +1,11 @@
+<c:if test="${not empty sessionScope.flash}">
+  <c:set var="flashIcon" value="${sessionScope.flashType == 'success' ? 'ti-circle-check'
+                                 : sessionScope.flashType == 'error' ? 'ti-alert-circle' : 'ti-info-circle'}" />
+  <div class="alert alert-${sessionScope.flashType}" role="status" ${sessionScope.flashType == 'error' ? '' : 'data-autohide'}>
+    <i class="ti ${flashIcon}"></i>
+    <span><c:out value="${sessionScope.flash}" /></span>
+    <button type="button" class="close" aria-label="Dismiss"><i class="ti ti-x"></i></button>
+  </div>
+  <c:remove var="flash" scope="session" />
+  <c:remove var="flashType" scope="session" />
+</c:if>
